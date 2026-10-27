@@ -1,25 +1,33 @@
-const mineflayer = require('mineflayer');
+const bedrock = require('bedrock-protocol');
 const express = require('express');
 const app = express();
-app.get('/', (req, res) => res.send('Bot is safe'));
+app.get('/', (req, res) => res.send('Bedrock AFK Bot Online!'));
 app.listen(process.env.PORT || 3000);
 
 const CONFIG = {
   host: 'Gpinoyserver.aternos.me',
   port: 59345,
   username: 'Mod',
-  version: false,
-  auth: 'offline'
+  offline: true
 };
 
 function createBot() {
-  const bot = mineflayer.createBot(CONFIG);
-  bot.on('spawn', () => {
-    console.log('SAFE SPAWN!');
-    bot.physicsEnabled = false; // DILI NA MO HULOG
+  console.log('Connecting as Bedrock Mod...');
+  const client = bedrock.createClient({
+    host: CONFIG.host,
+    port: CONFIG.port,
+    username: CONFIG.username,
+    offline: true,
+    version: '1.20.80'
   });
-  bot.on('end', () => setTimeout(createBot, 60000));
-  bot.on('kicked', () => setTimeout(createBot, 60000));
-  bot.on('error', () => setTimeout(createBot, 60000));
+  client.on('spawn', () => {
+    console.log('BEDROCK MOD JOINED - OK NA!');
+  });
+  client.on('close', () => {
+    setTimeout(createBot, 60000);
+  });
+  client.on('error', () => {
+    setTimeout(createBot, 60000);
+  });
 }
-createBot(); 
+createBot();
