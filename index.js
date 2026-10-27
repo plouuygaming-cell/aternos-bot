@@ -1,7 +1,7 @@
 const mineflayer = require('mineflayer');
 const express = require('express');
 const app = express();
-app.get('/', (req, res) => res.send('AFK Bot Stable!'));
+app.get('/', (req, res) => res.send('Bot is safe'));
 app.listen(process.env.PORT || 3000);
 
 const CONFIG = {
@@ -12,30 +12,14 @@ const CONFIG = {
   auth: 'offline'
 };
 
-let timer;
 function createBot() {
-  console.log('Starting stable bot...');
-  const bot = mineflayer.createBot({
-    host: CONFIG.host,
-    port: CONFIG.port,
-    username: CONFIG.username,
-    version: CONFIG.version,
-    auth: CONFIG.auth,
-    hideErrors: true
-  });
-
+  const bot = mineflayer.createBot(CONFIG);
   bot.on('spawn', () => {
-    console.log('STABLE! Bot joined - walay lihok!');
+    console.log('SAFE SPAWN!');
+    bot.physicsEnabled = false; // DILI NA MO HULOG
   });
-
-  bot.on('end', () => reconnect());
-  bot.on('kicked', (r) => { console.log('Kicked:', r); reconnect(); });
-  bot.on('error', (e) => { console.log('Error:', e.message); reconnect(); });
-
-  function reconnect() {
-    if (timer) return;
-    console.log('Reconnect after 60 sec...');
-    timer = setTimeout(() => { timer = null; createBot(); }, 60000);
-  }
+  bot.on('end', () => setTimeout(createBot, 60000));
+  bot.on('kicked', () => setTimeout(createBot, 60000));
+  bot.on('error', () => setTimeout(createBot, 60000));
 }
-createBot();
+createBot(); 
