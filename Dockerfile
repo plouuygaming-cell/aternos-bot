@@ -1,5 +1,5 @@
-FROM node:20-slim
-RUN apt-get update && apt-get install -y openjdk-21-jre-headless && rm -rf /var/lib/apt/lists/*
+FROM node:20
+RUN apt-get update && apt-get install -y default-jre-headless
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
