@@ -8,7 +8,7 @@ const config = {
   host: 'Gpinoyserver.aternos.me',
   port: 59345,
   username: 'Mod',
-  version: false
+  version: 26.52
 };
 
 function start(){
