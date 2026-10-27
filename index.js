@@ -12,7 +12,7 @@ async function start() {
       port: 59345,
       username: 'Mod',
       auth: 'offline',
-      version: '1.20.1'
+      version: '26.52'
     });
 
     bot.on('spawn', () => {
