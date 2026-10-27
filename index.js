@@ -1,17 +1,17 @@
 const mineflayer = require('mineflayer');
 const { pathfinder, Movements, goals } = require('mineflayer-pathfinder');
 const express = require('express');
-
 const app = express();
+
 app.get('/', (req, res) => res.send('AFK Bot is Running 24/7! Boss Plouu!'));
 app.listen(process.env.PORT || 3000, () => console.log('Web server running'));
 
 // ===== ILISI NI BOSS - IMONG ATERNOS SERVER =====
 const CONFIG = {
-  host: 'Gpinoyserver.aternos.me', // ILISI OG IMONG IP
-  port: 59345, // ILISI OG IMONG PORT
+  host: 'Gpinoyserver.aternos.me',
+  port: 59345,
   username: 'Mod',
-  version: '26.3', // IMONG MC VERSION
+  version: false, // AUTO-DETECT - AYAW NA ILISI OG 26.3!
   auth: 'offline'
 };
 
