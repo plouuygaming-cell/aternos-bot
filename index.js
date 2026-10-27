@@ -4,7 +4,7 @@ const bot = mineflayer.createBot({
   host: 'Gpinoyserver.aternos.me',
   port: 59345,
   username: 'Mod',
-  version: false // Automatically detects version
+  version: 26.52 // Automatically detects version
 });
 
 bot.on('spawn', () => {
